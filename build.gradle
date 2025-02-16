@@ -18,7 +18,12 @@ repositories {
 	maven {
 		url "https://jitpack.io"
 	}
+	maven { url "https://maven.shedaniel.me/" }
 	maven { url "https://maven.latticg.com/"}
+	maven {
+		name = "Terraformers"
+		url = "https://maven.terraformersmc.com/"
+	}
 }
 
 
@@ -37,7 +42,7 @@ dependencies {
 
 
 	implementation('com.github.KaptainWutax:MathUtils:6c2d50eacad0241ff76119e6e703b70bac4b4bce') {transitive = false}
-	implementation('com.github.KaptainWutax:SeedUtils:0de70bc772fef95d8acfa6991e7278ee53a8b46c') {transitive = false}
+	implementation('com.github.KaptainWutax:SeedUtils:76215a469fc39441c70bbd510af362fac22db2e3') {transitive = false}
 	implementation('com.github.KaptainWutax:FeatureUtils:0bd98a8dd892ff8d7292bcf5545f79a91a5eecca') {transitive = false}
 	implementation('com.github.KaptainWutax:BiomeUtils:62b374f2def7e09240447aceeb12a0a601b59a2b') {transitive = false}
 	implementation('com.github.KaptainWutax:ChunkRandomReversal:209eefb8ed2bd097e3c55d3934ba508b664443da') {transitive = false}
@@ -45,13 +50,13 @@ dependencies {
 	implementation 'com.seedfinding:latticg:1.05@jar'
 
 	include('com.github.KaptainWutax:MathUtils:6c2d50eacad0241ff76119e6e703b70bac4b4bce') {transitive = false}
-	include('com.github.KaptainWutax:SeedUtils:0de70bc772fef95d8acfa6991e7278ee53a8b46c') {transitive = false}
+	include('com.github.KaptainWutax:SeedUtils:76215a469fc39441c70bbd510af362fac22db2e3') {transitive = false}
 	include('com.github.KaptainWutax:FeatureUtils:0bd98a8dd892ff8d7292bcf5545f79a91a5eecca') {transitive = false}
 	include('com.github.KaptainWutax:BiomeUtils:62b374f2def7e09240447aceeb12a0a601b59a2b') {transitive = false}
 	include('com.github.KaptainWutax:ChunkRandomReversal:209eefb8ed2bd097e3c55d3934ba508b664443da') {transitive = false}
 	include 'com.github.KaptainWutax:LattiCG:b2a338f7bd765dcd184136c2245ea5765b75edf8'
 	include 'com.seedfinding:latticg:1.05@jar'
-	include "me.shedaniel.cloth:config-2:4.8.1"
+	include "me.s hedaniel.cloth:config-2:4.8.1"
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	// modCompile "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
