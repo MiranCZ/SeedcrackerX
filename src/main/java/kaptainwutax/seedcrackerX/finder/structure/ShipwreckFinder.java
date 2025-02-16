@@ -1,6 +1,7 @@
 package kaptainwutax.seedcrackerX.finder.structure;
 
 import kaptainwutax.featureutils.structure.RegionStructure;
+import kaptainwutax.seedcrackerX.ChunkPosUtil;
 import kaptainwutax.seedcrackerX.Features;
 import kaptainwutax.seedcrackerX.SeedCracker;
 import kaptainwutax.seedcrackerX.cracker.DataAddedEvent;
@@ -41,7 +42,7 @@ public class ShipwreckFinder extends BlockFinder {
     public List<BlockPos> findInChunk() {
         Biome biome = this.world.getBiomeForNoiseGen((this.chunkPos.x << 2) + 2, 0, (this.chunkPos.z << 2) + 2);
 
-        if(!biome.getGenerationSettings().hasStructureFeature(StructureFeature.SHIPWRECK)) {
+        if(!biome.hasStructureFeature(StructureFeature.SHIPWRECK)) {
             return new ArrayList<>();
         }
 
@@ -183,7 +184,7 @@ public class ShipwreckFinder extends BlockFinder {
 
                 if(SeedCracker.get().getDataStorage().addBaseData(data, DataAddedEvent.POKE_STRUCTURES)) {
                     this.renderers.add(new Cuboid(box, new Color(0, 255, 255)));
-                    this.renderers.add(new Cube(new ChunkPos(mutablePos).getStartPos().offset(Direction.UP, mutablePos.getY()), new Color(0, 255, 255)));
+                    this.renderers.add(new Cube(ChunkPosUtil.getStartPos(new ChunkPos(mutablePos)).offset(Direction.UP, mutablePos.getY()), new Color(0, 255, 255)));
                     return true;
                 }
             }

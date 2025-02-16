@@ -1,5 +1,6 @@
 package kaptainwutax.seedcrackerX.finder;
 
+import kaptainwutax.seedcrackerX.ChunkPosUtil;
 import kaptainwutax.seedcrackerX.SeedCracker;
 import kaptainwutax.seedcrackerX.cracker.BiomeData;
 import kaptainwutax.seedcrackerX.cracker.DataAddedEvent;
@@ -11,10 +12,11 @@ import kaptainwutax.seedcrackerX.util.Log;
 import kaptainwutax.seedutils.mc.MCVersion;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.math.ChunkSectionPos;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BuiltinBiomes;
+import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.dimension.DimensionType;
 
 import java.util.ArrayList;
@@ -32,7 +34,7 @@ public class BiomeFinder extends Finder {
 
         for(int x = 0; x < 16; x += 4) {
             for(int z = 0; z < 16; z += 4) {
-                BlockPos blockPos = this.chunkPos.getStartPos().add(x, 0, z);
+                BlockPos blockPos = ChunkPosUtil.getStartPos(chunkPos).add(x, 0, z);
                 Biome biome;
                 if(SeedCracker.MC_VERSION.isNewerOrEqualTo(MCVersion.v1_15)) {
                     biome = this.world.getBiomeForNoiseGen(blockPos.getX() >> 2, 0, blockPos.getZ() >> 2);
@@ -41,7 +43,7 @@ public class BiomeFinder extends Finder {
 
                 }
                 //TODO: Fix this multi-threading issue.
-                if(biome == BuiltinBiomes.THE_VOID) {
+                if(biome == Biomes.THE_VOID) {
                     continue;
                 }
                 BiomeData data;

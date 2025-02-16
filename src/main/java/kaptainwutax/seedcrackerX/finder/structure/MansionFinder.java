@@ -1,6 +1,7 @@
 package kaptainwutax.seedcrackerX.finder.structure;
 
 import kaptainwutax.featureutils.structure.RegionStructure;
+import kaptainwutax.seedcrackerX.ChunkPosUtil;
 import kaptainwutax.seedcrackerX.Features;
 import kaptainwutax.seedcrackerX.SeedCracker;
 import kaptainwutax.seedcrackerX.cracker.DataAddedEvent;
@@ -52,7 +53,7 @@ public class MansionFinder extends Finder {
     public List<BlockPos> findInChunk() {
         Biome biome = this.world.getBiomeForNoiseGen((this.chunkPos.x << 2) + 2, 0, (this.chunkPos.z << 2) + 2);
 
-        if(!biome.getGenerationSettings().hasStructureFeature(StructureFeature.MANSION)) {
+        if(!biome.hasStructureFeature(StructureFeature.MANSION)) {
             return new ArrayList<>();
         }
 
@@ -67,7 +68,7 @@ public class MansionFinder extends Finder {
 
                 if(SeedCracker.get().getDataStorage().addBaseData(data, DataAddedEvent.POKE_STRUCTURES)) {
                     this.renderers.add(new Cuboid(pos, pieceFinder.getLayout(), new Color(102, 66, 33)));
-                    this.renderers.add(new Cube(this.chunkPos.getStartPos().add(0, pos.getY(), 0), new Color(102, 66, 33)));
+                    this.renderers.add(new Cube(ChunkPosUtil.getStartPos(this.chunkPos).add(0, pos.getY(), 0), new Color(102, 66, 33)));
                 }
             });
         });

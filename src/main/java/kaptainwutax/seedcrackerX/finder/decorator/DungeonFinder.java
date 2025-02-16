@@ -55,7 +55,7 @@ public class DungeonFinder extends BlockFinder {
         XRAY_TEST_POS.add(new BlockPos(0,0,-3));
         for(BlockPos blockpos:XRAY_TEST_POS) {
             BlockPos.Mutable currentPos = new BlockPos.Mutable(pos.getX(),pos.getY(),pos.getZ());
-            currentPos.move(blockpos);
+            currentPos.move(blockpos.getX(), blockpos.getY(), blockpos.getZ());
             Block posCheck = this.world.getBlockState(currentPos).getBlock();
             if (posCheck == Blocks.COBBLESTONE) {
                 currentPos.move(0, -1, 0);
