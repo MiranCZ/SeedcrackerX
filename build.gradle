@@ -38,7 +38,7 @@ dependencies {
 		exclude(group: "net.fabricmc.fabric-api")
 	}
 	
-	modImplementation "io.github.prospector:modmenu:1.14.6+build.31"
+//	modImplementation "io.github.prospector:modmenu:1.14.6+build.31"
 
 
 	implementation('com.github.KaptainWutax:MathUtils:6c2d50eacad0241ff76119e6e703b70bac4b4bce') {transitive = false}
