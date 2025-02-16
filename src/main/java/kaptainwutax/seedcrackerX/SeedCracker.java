@@ -11,7 +11,7 @@ import net.minecraft.util.Formatting;
 
 public class SeedCracker implements ModInitializer {
 
-	public static MCVersion MC_VERSION = MCVersion.v1_16_2;
+	public static MCVersion MC_VERSION = MCVersion.v1_16_1;
 
     private static final SeedCracker INSTANCE = new SeedCracker();
     private final DataStorage dataStorage = new DataStorage();
