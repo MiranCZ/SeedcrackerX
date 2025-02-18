@@ -1,5 +1,6 @@
 package kaptainwutax.seedcrackerX;
 
+import kaptainwutax.seedcrackerX.api.SeedCrackerAPI;
 import kaptainwutax.seedcrackerX.command.ClientCommand;
 import kaptainwutax.seedcrackerX.cracker.storage.DataStorage;
 import kaptainwutax.seedcrackerX.finder.FinderQueue;
@@ -7,13 +8,17 @@ import kaptainwutax.seedcrackerX.profile.config.ConfigScreen;
 import kaptainwutax.seedcrackerX.render.RenderQueue;
 import kaptainwutax.seedutils.mc.MCVersion;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.util.Formatting;
+
+import java.util.ArrayList;
 
 public class SeedCracker implements ModInitializer {
 
 	public static MCVersion MC_VERSION = MCVersion.v1_16_1;
 
     private static final SeedCracker INSTANCE = new SeedCracker();
+	public static final ArrayList<SeedCrackerAPI> entrypoints = new ArrayList<>();
     private final DataStorage dataStorage = new DataStorage();
 	private static boolean active;
 
@@ -22,6 +27,10 @@ public class SeedCracker implements ModInitializer {
 		ConfigScreen.loadConfig();
 		active = ConfigScreen.getConfig().isActive();
 		Features.init(MC_VERSION);
+
+		FabricLoader.getInstance().getEntrypointContainers("seedcrackerx", SeedCrackerAPI.class).forEach(entrypoint ->
+				entrypoints.add(entrypoint.getEntrypoint()));
+
 		RenderQueue.get().add("hand", FinderQueue.get()::renderFinders);
 	}
 

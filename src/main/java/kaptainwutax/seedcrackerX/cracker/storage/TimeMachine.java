@@ -50,6 +50,12 @@ public class TimeMachine {
 
 			finalPhase[0] = finalPhase[0].nextPhase();
 		}
+
+        if (this.worldSeeds != null && finalPhase[0] == null && this.worldSeeds.size() == 1 && !this.shouldTerminate) {
+            long seed = worldSeeds.stream().findFirst().get();
+			SeedCracker.entrypoints.forEach(entrypoint -> entrypoint.pushWorldSeed(seed));
+        }
+
 	}
 
 	protected boolean pokePillars() {

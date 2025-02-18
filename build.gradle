@@ -1,6 +1,7 @@
 plugins {
 	id 'fabric-loom' version '1.0-SNAPSHOT'
 	id 'maven-publish'
+	id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -32,14 +33,14 @@ dependencies {
 	}
 
 
-	include implementation('com.github.KaptainWutax:MathUtils:6c2d50eacad0241ff76119e6e703b70bac4b4bce') {transitive = false}
-	include implementation('com.github.KaptainWutax:SeedUtils:76215a469fc39441c70bbd510af362fac22db2e3') {transitive = false}
-	include implementation('com.github.KaptainWutax:FeatureUtils:0bd98a8dd892ff8d7292bcf5545f79a91a5eecca') {transitive = false}
-	include implementation('com.github.KaptainWutax:BiomeUtils:62b374f2def7e09240447aceeb12a0a601b59a2b') {transitive = false}
-	include implementation('com.github.KaptainWutax:ChunkRandomReversal:209eefb8ed2bd097e3c55d3934ba508b664443da') {transitive = false}
-	include implementation('com.github.KaptainWutax:LattiCG:b2a338f7bd765dcd184136c2245ea5765b75edf8')
-	include implementation('com.seedfinding:latticg:1.05@jar')
-	include "me.shedaniel.cloth:config-2:4.8.1"
+	shadow modRuntimeOnly('com.github.KaptainWutax:MathUtils:6c2d50eacad0241ff76119e6e703b70bac4b4bce') {transitive = false}
+	shadow modRuntimeOnly('com.github.KaptainWutax:SeedUtils:76215a469fc39441c70bbd510af362fac22db2e3') {transitive = false}
+	shadow modRuntimeOnly('com.github.KaptainWutax:FeatureUtils:0bd98a8dd892ff8d7292bcf5545f79a91a5eecca') {transitive = false}
+	shadow modRuntimeOnly('com.github.KaptainWutax:BiomeUtils:62b374f2def7e09240447aceeb12a0a601b59a2b') {transitive = false}
+	shadow modRuntimeOnly('com.github.KaptainWutax:ChunkRandomReversal:209eefb8ed2bd097e3c55d3934ba508b664443da') {transitive = false}
+	shadow modRuntimeOnly('com.github.KaptainWutax:LattiCG:b2a338f7bd765dcd184136c2245ea5765b75edf8')
+	shadow modRuntimeOnly('com.seedfinding:latticg:1.05@jar')
+	shadow "me.shedaniel.cloth:config-2:4.8.1"
 
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
@@ -47,6 +48,18 @@ dependencies {
 
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
+}
+
+shadowJar {
+	configurations = [project.configurations.shadow]
+	exclude("META-INF")
+}
+
+remapJar {
+	// wait until the shadowJar is done
+	dependsOn(":shadowJar")
+	// Set the input jar for the task. Here use the shadow Jar that include the .class of the transitive dependency
+	input.set(shadowJar.archiveFile)
 }
 
 processResources {
