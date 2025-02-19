@@ -40,7 +40,11 @@ dependencies {
 	shadow modRuntimeOnly('com.github.KaptainWutax:ChunkRandomReversal:209eefb8ed2bd097e3c55d3934ba508b664443da') {transitive = false}
 	shadow modRuntimeOnly('com.github.KaptainWutax:LattiCG:b2a338f7bd765dcd184136c2245ea5765b75edf8')
 	shadow modRuntimeOnly('com.seedfinding:latticg:1.05@jar')
-	shadow "me.shedaniel.cloth:config-2:4.8.1"
+	shadow ("me.shedaniel.cloth:config-2:4.8.1") {
+		exclude(group: "net.fabricmc.fabric-api")
+		exclude(group: "net.fabricmc", module: "fabric-loader")
+
+	}
 
 
 	// Fabric API. This is technically optional, but you probably want it anyway.

@@ -20,7 +20,7 @@
   "environment": "client",
   "entrypoints": {
     "main": [
-      "kaptainwutax.seedcrackerX.SeedCracker"
+      "kaptainwutax.seedcrackerx.SeedCracker"
     ]
 
   },
